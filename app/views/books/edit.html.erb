@@ -1,0 +1,548 @@
+<div class="row header" style="padding-bottom: 0px;">
+  <div class ="col-lg-3 col-md-3 col-sm-3" style="padding-left:0px;padding-right: 0px;margin-right: -10px;">
+    <a href="/user/account"><img src="/images/redshift-logo.png" class="logo"></a>
+  </div>
+  <div class ="col-lg-6 col-md-6 col-sm-6" style="padding-left: 0px;">
+    <ul id="edit_book_tabs" class="nav nav-tabs" style="margin-top:65px;">
+      <li class="active"><a data-toggle="tab"  id="metadataTab" href="#metadata">METADATA</a></li>
+      <li><a data-toggle="tab" id="assetsTab" href="#assets">ASSETS</a></li>
+      <li><a data-toggle="tab" id="proofTab" href="#preview_proof">PROOF</a></li>
+    </ul>
+  </div>
+  <div class ="col-lg-3 col-md-3 col-sm-3">
+    <h2 class="pull-right"> {{bookDetails.author_surname}}, {{bookDetails.title}}</h2>
+  </div>
+</div>
+<input type="hidden" id="bookId" value="{{bookDetails.book_id}}"/>
+<input type="hidden" id="isBookLocked" name="isBookLocked" value="{{bookDetails.is_locked}}">
+<input type="hidden" id="lockingUser" name="lockingUser" value="{{bookDetails.locking_user}}">
+<input type="hidden" id="loggedInUser" name="loggedInUser" value="{{loggedInUser.email}}">
+<input type="hidden" id="currentLanguage" name="currentLanguage" value="{{bookDetails.language_code}}">
+<input type="hidden" id="taskUrl" value="{{task_url}}"/>
+
+<div class="tab-content">
+  <div id="metadata" class="tab-pane fade in active">
+    <div class="row book-list-panel row-eq-height">
+      <div class ="col-lg-3 col-md-3 col-sm-3 left-panel" style="padding-top:0px">
+        <div class="col-sm-3 sidebar sidebar_gray ">
+          <input id="bookId" type="hidden" value="{{bookDetails.book_id}}" />
+          <table class="borderless td-spacing">
+            <tr class="spaceUnder">
+              <td style="padding-bottom:0px;">
+                <h1><strong>File uploads</strong></h1>
+              </td>
+            </tr>
+            <tr class="spaceUnder">
+              <td style="padding-bottom:0px;">
+                <h4><strong> Cover image </strong></h4>
+              </td>
+            </tr>
+            <tr class="spaceUnder">
+              <td>
+                <img src="{{bookDetails.cover_image_url}}" width="250" height="400" />
+              </td>
+            </tr>
+            <tr class="spaceUnder">
+              <td style="padding-bottom:0px;">
+                <h4><strong>Ebook CSS</strong></h4>
+              </td>
+            </tr>
+            <tr class="spaceUnder">
+              <td>
+                <img src="/images/css_symbol.png" width="40" height="40">
+                <a>ISDI 1B22B.2B1</a>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class ="col-lg-9 col-md-9 col-sm-9 right-panel" style="padding-top:0px">
+        <form class="book form-horizontal" name="book" id="book" role="form" data-toggle="validator">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-12">
+                <label for="author" class="control-label col-sm-6">  <h4><strong style="margin-left:-15px">Authors<b style="color:red">*</b> </strong></h4></label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <label for="author_email" class="control-label col-sm-2">  <h4><strong>Email</strong></h4></label>
+                <div class="col-sm-3">
+                  <input type="text" id="author_email" name="author_email" value="{{bookDetails.author_email}}" class="book-field input-lg input-lg-custom" required="true" disabled="disabled" style="background-color:#EBEBE4">
+                </div>
+                <label for="author_honorific" class="control-label col-sm-2">  <h4><strong>Honorific</strong></h4></label>
+                <div class="col-sm-3">
+                  <input type="text" id="author_honorific" name="author_honorific" value="{{bookDetails.author_honorific}}" class="book-field input-lg input-lg-custom">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <label for="author_given_name" class="control-label col-sm-2">  <h4><strong>Given name(s)</strong></h4></label>
+                <div class="col-sm-3">
+                  <input type="text" id="author_given_name" name="author_given_name" value="{{bookDetails.author_given_name}}" class="book-field input-lg input-lg-custom">
+                </div>
+                 <label for="author_surname" class="control-label col-sm-2">  <h4><strong> Surname </strong></h4></label>
+                  <div class="col-sm-3">
+                    <input type="text" id="author_surname" name="author_surname" value="{{bookDetails.author_surname}}" class="book-field input-lg input-lg-custom">
+                  </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                  <label for="author_suffix" class="control-label col-sm-2">  <h4><strong> Suffix </strong></h4></label>
+                  <div class="col-sm-3">
+                    <input type="text" id="author_suffix" name="author_suffix" value="{{bookDetails.author_suffix}}" class="book-field input-lg input-lg-custom">
+                  </div>
+              </div>
+            </div>
+            <hr class="col-md-10" style="border-color: inherit; border-width: 1px; margin-top: 8px; margin-bottom: 0px; margin-left: -10px"/>
+            <div class="form-group" style="padding-top:2px">
+              <label for="book_title" class="control-label col-sm-2">  <h4><strong> Title<b style="color:red">*</b> </strong></h4></label>
+              <div class="col-sm-8">
+                <input type="text" id="book_title" name="book_title" value="{{bookDetails.title}}" class="book-field input-lg input-lg-custom" required="true">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="subtitle" class="control-label col-sm-2">  <h4><strong> Subtitle </strong></h4></label>
+              <div class="col-sm-8">
+                <input type="text" id="subtitle" name="subtitle" value="{{bookDetails.subtitle}}" class="book-field input-lg input-lg-custom">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="series_title" class="control-label col-sm-2">  <h4><strong> Series Title </strong></h4></label>
+              <div class="col-sm-8">
+                <input type="text" id="series_title" name="series_title" value="{{bookDetails.series_title}}" class="book-field input-lg input-lg-custom">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="edition" class="control-label col-sm-2">  <h4><strong> Edition </strong></h4></label>
+              <div class="col-sm-8">
+                <input type="text" id="edition" name="edition" value="{{bookDetails.edition}}" class="book-field input-lg input-lg-custom">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="volume" class="control-label col-sm-2">  <h4><strong> Volume </strong></h4></label>
+              <div class="col-sm-8">
+                <input type="text" id="volume" name="volume" value="{{bookDetails.volume}}" class="book-field input-lg input-lg-custom">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="year_of_pub" class="control-label col-sm-2">  <h4><strong> Year of publication </strong></h4></label>
+              <div class="col-sm-8">
+                <input type="text" id="year_of_pub" name="year_of_pub" value="{{bookDetails.year_of_pub}}" class="book-field input-lg input-lg-custom">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="isbn_hardback" class="control-label col-sm-2">  <h4><strong> ISBN Hardback</strong></h4></label>
+                  <div class="col-sm-3">
+                    <input type="text" id="isbn_hardback" name="isbn_hardback" value="{{bookDetails.isbn_hardback}}" class="book-field input-lg input-lg-custom">
+                  </div>
+                  <label for="isbn_paperback" class="control-label col-sm-2">  <h4><strong> ISBN Paperback</strong></h4></label>
+                  <div class="col-sm-3">
+                    <input type="text" id="isbn_paperback" name="isbn_paperback" value="{{bookDetails.isbn_paperback}}" class="book-field input-lg input-lg-custom">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="isbn_ebook" class="control-label col-sm-2">  <h4><strong>ISBN Ebook</strong></h4></label>
+                  <div class="col-sm-3">
+                    <input type="text" id="isbn_ebook" name="isbn_ebook" value="{{bookDetails.isbn_ebook}}" class="book-field input-lg input-lg-custom">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="col-md-10" style="border-color: inherit; border-width: 1px; margin-top: 20px; margin-bottom: 0px"/>
+            <div class="row">
+              <div class="col-md-12">
+                <h2><b>E-Book metadata</b></h2>
+                <div class="form-group">
+                  <label for="publisher" class="control-label col-sm-2">  <h4><strong> Publisher </strong></h4></label>
+                  <div class="col-sm-8">
+                    <input type="text" id="publisher" name="publisher" value="{{bookDetails.publisher}}" class="book-field input-lg input-lg-custom">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="rights" class="control-label col-sm-2">  <h4><strong> Rights </strong></h4></label>
+                  <div class="col-sm-8">
+                    <input type="text" id="rights" name="rights" value="{{bookDetails.rights}}" class="book-field input-lg input-lg-custom">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="description" class="control-label col-sm-2">  <h4><strong> Description </strong></h4></label>
+                  <div class="col-sm-8">
+                    <textarea id="description" name="description" class="book-field input-lg input-lg-custom" style="height:180px; text-align:justify; white-space:normal;">{{bookDetails.description}}</textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="language" class="control-label col-sm-2">  <h4><strong> Language </strong></h4></label>
+                  <div class="col-xs-3">
+                    <select id="language" name="language" class="book-field input-lg input-lg-custom">
+                      {{#each language}}
+                      <option value="{{this.code}}">{{this.name}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="row">
+              <div id="errorMessage" class="alert alert-danger">
+
+              </div>
+        </div>
+        <div class="form-group pull-right" style="padding-right:50px">
+          <button id="edit_book" class="btn primary-button common-button-size" style="width:150px" >Save</button>
+          <button type="cancel" id="cancel_book" class="btn primary-button common-button-size" style="width:150px">Cancel</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div id="assets" class="tab-pane fade">
+    <div class="row book-list-panel row-eq-height">
+      <div class ="col-lg-3 col-md-3 col-sm-3 left-panel" style="padding-top:0px">
+        <div class="col-sm-3 sidebar sidebar_gray">
+          <table class="borderless td-spacing">
+            <tr class="spaceUnder">
+              <td style="padding-bottom:0px;">
+                <h1><strong>File uploads</strong></h1>
+              </td>
+            </tr>
+            <tr class="spaceUnder">
+              <td style="padding-bottom:0px;">
+                <h4><strong> Cover image </strong></h4>
+              </td>
+            </tr>
+            <tr class="spaceUnder">
+              <td>
+                <img src="{{bookDetails.cover_image_url}}" width="250" height="400" />
+              </td>
+            </tr>
+            <tr class="spaceUnder">
+              <td style="padding-bottom:0px;">
+                <h4><strong>Ebook CSS</strong></h4>
+              </td>
+            </tr>
+            <tr class="spaceUnder">
+              <td>
+                <img src="/images/css_symbol.png" width="40" height="40">
+                <a>ISDI 1B22B.2B1</a>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class ="col-lg-9 col-md-9 col-sm-9 right-panel" style="padding-top:0px">
+        <div class="row" style="margin-top:20px">
+          <div class="col-sm-6">
+            <h1><strong>Manuscript versions</strong></h1>
+            <div class="panel panel-default" style="margin-bottom:0px; overflow: scroll; height: 380px;">
+              <div class="panel-body" style="height:450px">
+                {{#each versions}}
+                    <div class="row" style="margin-bottom:10Px">
+                        {{#if this.is_major }}
+                            <span class="col-sm-10">
+                              <strong>{{this.version_name}} - {{this.created_on}}</strong>
+                            </span>
+                        {{else}}
+                            <span style="padding-left:30px" class="col-sm-10">
+                                {{this.version_name}} - {{this.created_on}}
+                            </span>
+                        {{/if}}
+
+                        <span class="col-sm-2">
+                          <input type="checkbox" name="proofVersions" style="width:35px; height:40px; margin-top:-10px;" value="{{this.version}}">
+                          <input type="hidden" id="file_{{this.version}}" value="{{this.url}}"/>
+                        </span>
+                    </div>
+
+                {{/each}}
+              </div>
+            </div>
+            <div style="text-align:center;">
+                <button id="downloadDocxVersion" class="btn primary-button common-button-size" style="width:130px" disabled>Download</button>
+                <button id="proof" type="button" class="btn primary-button common-button-size" style="width:130px" data-toggle="modal" data-target="#publishBookModal" disabled>Proof</button>
+                <button id="compare" class="btn primary-button common-button-size" style="width:130px" disabled>Compare</button>
+            </div>
+
+          </div>
+          <div class="col-sm-6">
+            <h1><strong>Figures</strong></h1>
+            <div class="panel panel-default" style="margin-bottom:0px; overflow: scroll; height: 380px;">
+              <div id = "assertList" class="panel-body" style="height:450px">
+                  <p id="noImageMessage"><i style="color:grey;">No images have been uploaded for this title</i></p>
+                  <ul style="padding-left: 10px;max-height: 430px;overflow-y:auto;overflow-x: hidden;">
+                      {{#each images}}
+                          <li style="display:block">
+                              <div class="row" style="margin-bottom:15px">
+                                  <div class="col-sm-1">
+                                      <input type="checkbox" id="{{{this.image_id}}}" name="images" value="{{{this.image_id}}}">
+                                      <input type="hidden" id="file_{{this.image_id}}" value="{{image_url}}"/>
+                                  </div>
+                                  <div class="col-sm-11">
+                                      <p><strong>{{{this.image_name}}}</strong></p>
+                                      <input type="hidden" id="image_name_{{this.image_id}}" value="{{this.image_name}}"/>
+                                  </div>
+                              </div>
+                          </li>
+                      {{/each}}
+                  </ul>
+
+              </div>
+            </div>
+            <div style="text-align:center;">
+                <button id="upload" class="btn primary-button common-button-size" style="width:130px" data-toggle="modal" data-target="#uploadImageModal">Upload</button>
+                <button id="downloadImageFiles" class="btn primary-button common-button-size" style="width:130px"  disabled >Download</button>
+                <button id="replaceBtn" class="btn primary-button common-button-size" style="width:130px" disabled data-toggle="modal" data-target="#replaceImageModal" onclick="setPreviewUrl()">Replace</button>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-top:20px; text-align:center;">
+              <button id="force_checkin" class="btn primary-button common-button-size">Force Close</button>
+              <button id="btnFinalize" class="btn primary-button common-button-size">Finalize Book</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="preview_proof" class="tab-pane fade">
+      <div class="row book-list-panel row-eq-height">
+          <div class ="col-lg-3 col-md-3 col-sm-3 left-panel" style="padding-top:0px">
+              <div class="col-sm-3 sidebar sidebar_gray ">
+                  <input id="bookId" type="hidden" value="{{bookDetails.book_id}}" />
+                  <table class="borderless td-spacing">
+                      <tr class="spaceUnder">
+                          <td style="padding-bottom:0px;">
+                              <h1><strong>File uploads</strong></h1>
+                          </td>
+                      </tr>
+                      <tr class="spaceUnder">
+                          <td style="padding-bottom:0px;">
+                              <h4><strong> Cover image </strong></h4>
+                          </td>
+                      </tr>
+                      <tr class="spaceUnder">
+                          <td>
+                              <img src="{{bookDetails.cover_image_url}}" width="250" height="400" />
+                          </td>
+                      </tr>
+                      <tr class="spaceUnder">
+                          <td style="padding-bottom:0px;">
+                              <h4><strong>Ebook CSS</strong></h4>
+                          </td>
+                      </tr>
+                      <tr class="spaceUnder">
+                          <td>
+                              <img src="/images/css_symbol.png" width="40" height="40">
+                              <a>ISDI 1B22B.2B1</a>
+                          </td>
+                      </tr>
+                  </table>
+              </div>
+          </div>
+
+          <div class ="col-lg-9 col-md-9 col-sm-9 right-panel" style="padding-top:0px">
+              <div class="container-fluid" style="padding-top: 20px;">
+                  <div class="row">
+                      <div class="col-sm-3">
+                          <div class="form-group">
+                              <label for="compositionServer">
+                                  <h4><strong>1. Composition Server</strong></h4></label>
+                                  <select class="form-control" id="compServer" style="margin-top:25px">
+                                      <option>Select Composition server</option>
+                                      {{#each engines}}
+                                          <option val="{{{this.engineName}}}">{{{this.lookupName}}}</option>
+                                      {{/each}}
+                                  </select>
+                          </div>
+                      </div>
+
+                      <div class="col-sm-3">
+                          <div class="form-group">
+                              <label for="typesetting">
+                                  <h4><strong>2. Typesetting template</strong></h4></label>
+                              </br>
+                              <select class="form-control" id="typesetting" style="margin-top:25px">
+                                  <option>Select Template</option>
+                              </select>
+                          </div>
+                      </div>
+
+                      <div class="col-sm-3">
+                          <div class="form-group">
+                              <h4><strong>3. Generate proof</strong></h4>
+                              <button id="previewButton" style="width:140px" type="button" class="btn primary-button" data-toggle="modal" data-target="#publishBookModal"> Preview </button>
+                          </div>
+                      </div>
+
+                      <div id = 'completeTaskSection' class="col-sm-3">
+                          <div class="form-group">
+                              <h4><strong>4. Complete the task</strong></h4>
+                              <button type="button" id = "btnCompleteTaskPopup" class="btn primary-button" data-toggle="modal" data-target="#completeTaskModal"> Assign Template </button>
+                          </div>
+
+                      </div>
+
+                  </div>
+                  <hr/>
+                  <div class="row">
+                      <div class="col-md-12" >
+                          <table class="typesetting" id = "templateInfo">
+
+                          </table>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div id="assetsErrorMessage" class="alert alert-danger">
+
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div id="message" class="alert alert-success">
+
+                      </div>
+                  </div>
+
+                  <div class="space"></div>
+                  <div class="row sub-section">
+                      <div class="col-md-12">
+                          <table id="previewLogTable" class="table table-condensed">
+
+                          </table>
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+</div>
+
+<!-- Modal publish book-->
+<div class="modal fade" id="publishBookModal" tabindex="-1" role="dialog" aria-labelledby="publishBookModal" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="chooseTemplateModal">Generating PDF proof</h4>
+      </div>
+      <div class="modal-body">
+        <p id="statusMessage">Book queued for composition</p>
+          <i id="progressBar" class="fa fa-circle-o-notch fa-spin" style="font-size:24px;position: absolute;display: block;top: 50%;left: 50%;"></i>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="downloadBtn" class="btn primary-button-success" style="display:none">Download book</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal replace image -->
+<div class="modal fade" id="replaceImageModal" tabindex="-1" role="dialog" aria-labelledby="replaceImageModal" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" >Replace the selected image with</h4>
+      </div>
+      <div class="modal-body" style="text-align: center">
+        <div class="alert alert-danger" id="serverImageReplaceError" hidden>
+
+        </div>
+            <form id="imageReplaceForm" enctype="multipart/form-data" method="POST">
+                <div class="row">
+                     <div id="replacing_image" name="replacing_image" value="" placeholder="Replacing image URL" class="docdropzone needsclick" style="width:100% !important;" >
+                         <div class="dz-message needsclick" style="text-align: center;margin: 2em 0;font-weight: 400;">
+                             Drop files here or click to upload
+                         </div>
+                     </div>
+                </div>
+              <div class="modal-footer">
+                  <div class="row">
+                      <div class="col-md-4">
+                          <img id = "imgReplaceImagePreview" class="thumbnail" src="" alt="..." style="width:80px;height:80px">
+                      </div>
+                      <div class="col-md-8">
+                          <button type="button" id="saveImageReplace" class="btn primary-button" style="width:100px">Save</button>
+                          <button type="button" id="cancelImageReplace" class="btn primary-button" style="width:100px">Cancel</button>
+                      </div>
+                  </div>
+              </div>
+          </form>
+          </div>
+
+        </div>
+      </div>
+</div>
+<div class="alert alert-danger" style="visibility: hidden;" id="server_error">
+
+</div>
+
+<!-- Modal Upload image -->
+<div class="modal fade" id="uploadImageModal" tabindex="-1" role="dialog" aria-labelledby="uploadImageModal" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" >Upload Image</h4>
+            </div>
+            <div class="modal-body" style="text-align: center">
+                <div class="alert alert-danger" id="serverImageUploadError" hidden>
+
+                </div>
+                <div>
+                    <div id="upload_image" name="upload_image" value="" placeholder="Upload image URL" class="docdropzone needsclick" style="width:100% !important;">
+                        <div class="dz-message needsclick" style="text-align: center;margin: 2em 0;font-weight: 400;">
+                            Drop files here or click to upload
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="saveImageUpload" class="btn primary-button" style="width:100px">Save</button>
+                <button type="button" id="cancelImageUpload" class="btn primary-button" style="width:100px">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Complete Task -->
+<div class="modal fade" id="completeTaskModal" tabindex="-1" role="dialog" aria-labelledby="completeTaskModal" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" >Select the template.</h4>
+            </div>
+            <div class="modal-body" style="text-align: center">
+                <div class="alert alert-danger" id="serverCompleteTaskError" hidden>
+
+                </div>
+                <form id="completeTaskForm" enctype="multipart/form-data" method="POST">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <textarea class="form-control" rows="4" id="comments"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="markAsCompleted" class="btn primary-button" style="width:150px">Assign Template</button>
+                        <button type="button" id="cancelCompleteTask" class="btn primary-button" style="width:100px">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

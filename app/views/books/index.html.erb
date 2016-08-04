@@ -1,0 +1,32 @@
+
+<div class="row header">
+    <div class ="col-lg-3 col-md-3 col-sm-3">
+        <a href="/user/account"><img src="/images/redshift-logo.png" class="logo"></a>
+    </div>
+    <div class ="col-lg-9 col-md-9 col-sm-9">
+        <h3 class="pull-right">Admin screen</h3>
+    </div>
+</div>
+
+<div class="row book-list-panel row-eq-height">
+    <div class ="col-lg-3 col-md-3 col-sm-3 left-panel">
+        <h3><strong>Library</strong></h3>
+        <a href="/book/new" class="btn primary-button common-button-size" role="button" >Add new book</a>
+    </div>
+    <div class ="col-lg-9 col-md-9 col-sm-9 right-panel">
+        {{#each book_list}}
+            <div class="row space">
+                <div class="col-lg-3 pull-bottom center">
+                    <img src="{{this.cover_image_url}}" class="cover-page-image">
+                </div>
+                <div class="col-lg-6 pull-bottom book-details">
+                    <h4><strong>{{this.author_given_name}} {{this.author_surname}}</strong></h4>
+                    <h4><strong>{{this.title}}</strong></h4>
+                    <p style="padding-top: 25px;"><a href="/book/{{this.book_id}}" id = "btn_{{this.book_id}}" class="btn primary-button common-button-size" role="button" style="width:100px">Edit</a></p>
+
+                </div>
+            </div>
+            <hr class="divider"/>
+        {{/each}}
+    </div>
+</div>

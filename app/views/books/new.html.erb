@@ -1,0 +1,176 @@
+<div class="row header">
+  <div class ="col-lg-3 col-md-3 col-sm-3">
+    <a href="/user/account"><img src="/images/redshift-logo.png" class="logo"></a>
+  </div>
+  <div class ="col-lg-9 col-md-9 col-sm-9">
+    <h3 class="pull-right">Add new book</h3>
+  </div>
+</div>
+<div class="row book-list-panel row-eq-height">
+  <div class ="col-lg-3 col-md-3 col-sm-3 left-panel">
+    <h3><strong>File uploads</strong></h3>
+    <div>
+      <label for="cover_image"> <h4><strong> Cover image </strong></h4></label>
+      <div id="cover_image" name="cover_image" value="" placeholder="Cover Image URL" class="docdropzone needsclick" >
+        <div class="dz-message needsclick" style="text-align: center;margin: 2em 0;font-weight: 400;">
+          Drop files here or click to upload %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class ="col-lg-9 col-md-9 col-sm-9 right-panel">
+    <form class="book form-horizontal" name="book" id="book" role="form" data-toggle="validator">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-12">
+            <label for="author_email" class="control-label col-sm-2">  <h4><strong>Author's Email<b style="color:red">*</b></strong></h4></label>
+            <div class="col-sm-3">
+              <input type="text" id="author_email" name="author_email" value="" class="book-field input-lg input-lg-custom" placeholder="Email address" required="true">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <label for="author_honorific" class="control-label col-sm-2">  <h4><strong>Honorific</strong></h4></label>
+            <div class="col-sm-3">
+              <input type="text" id="author_honorific" name="author_honorific" value="" class="book-field input-lg input-lg-custom" placeholder="Honorific">
+            </div>
+            <label for="author_given_name" class="control-label col-sm-2">  <h4><strong>Given name(s)<b style="color:red">*</b></strong></h4></label>
+            <div class="col-sm-3">
+              <input type="text" id="iauthor_given_name" name="author_given_name" value="" class="book-field input-lg input-lg-custom" required="true" placeholder="Author given name(s)">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <label for="author_surname" class="control-label col-sm-2">  <h4><strong> Surname<b style="color:red">*</b></strong></h4></label>
+            <div class="col-sm-3">
+              <input type="text" id="author_surname" name="author_surname" value="" class="book-field input-lg input-lg-custom" required="true" placeholder="Author surname">
+            </div>
+            <label for="author_suffix" class="control-label col-sm-2">  <h4><strong> Suffix </strong></h4></label>
+            <div class="col-sm-3">
+              <input type="text" id="author_suffix" name="author_suffix" value="" class="book-field input-lg input-lg-custom" placeholder="Suffix">
+            </div>
+          </div>
+        </div>
+        <hr class="col-md-10" style="border-color: inherit; border-width: 1px; margin-bottom: 0px; margin-left: -10px"/>
+      </div>
+      <div class="form-group">
+        <label for="book_title" class="control-label col-sm-2">  <h4><strong> Title<b style="color:red">*</b> </strong></h4></label>
+        <div class="col-sm-8">
+          <input type="text" id="book_title" name="book_title" value="" placeholder="title" class="book-field input-lg input-lg-custom" required="true">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="subtitle" class="control-label col-sm-2">  <h4><strong> Subtitle </strong></h4></label>
+        <div class="col-sm-8">
+          <input type="text" id="subtitle" name="subtitle" value="" placeholder="subtitle (if you have one)" class="book-field input-lg input-lg-custom">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="templates" class="control-label col-sm-2"> <h4><strong> Choose typesetting template </strong></h4></label>
+        <div class="col-sm-8">
+          <select class="book-field input-lg input-lg-custom" id="typesetting">
+            <option>Select Template</option>
+            {{#each templates}}
+            <option data-id="{{this.lookupName}}">{{this.name}}</option>
+            {{/each}}
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="series_title" class="control-label col-sm-2">  <h4><strong> Series Title </strong></h4></label>
+        <div class="col-sm-8">
+          <input type="text" id="series_title" name="series_title" value="" placeholder="series title (if applicable)" class="book-field input-lg input-lg-custom">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="publisher" class="control-label col-sm-2">  <h4><strong> Publisher </strong></h4></label>
+        <div class="col-sm-8">
+          <input type="text" id="publisher" name="publisher" value="" placeholder="publisher name (for the ebook and book metadata)" class="book-field input-lg input-lg-custom">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="edition" class="control-label col-sm-2">  <h4><strong> Edition </strong></h4></label>
+        <div class="col-sm-8">
+          <input type="text" id="edition" name="edition" value="" placeholder="edition" class="book-field input-lg input-lg-custom">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="volume" class="control-label col-sm-2">  <h4><strong> Volume </strong></h4></label>
+        <div class="col-sm-8">
+          <input type="text" id="volume" name="volume" value="" placeholder="volume" class="book-field input-lg input-lg-custom">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="rights" class="control-label col-sm-2">  <h4><strong> Rights </strong></h4></label>
+        <div class="col-sm-8">
+          <input type="text" id="rights" name="rights" value="" placeholder="rights statement (for the ebook and book metadata)" class="book-field input-lg input-lg-custom">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="year_of_pub" class="control-label col-sm-2">  <h4><strong> Year of publication </strong></h4></label>
+        <div class="col-sm-8">
+          <input type="text" id="year_of_pub" name="year_of_pub" value="" placeholder="year of publication" class="book-field input-lg input-lg-custom">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="isbn_hardback" class="control-label col-sm-2">  <h4><strong> ISBN Hardback</strong></h4></label>
+            <div class="col-sm-3">
+              <input type="text" id="isbn_hardback" name="isbn_hardback" value="" placeholder="ISBN (if you have one)" class="book-field input-lg input-lg-custom">
+            </div>
+            <label for="language" class="control-label col-sm-2">  <h4><strong> Language </strong></h4></label>
+            <div class="col-xs-3">
+              <select id="language" name="language" class="book-field input-lg input-lg-custom">
+                {{#each language}}
+                <option value="{{this.code}}">{{this.name}}</option>
+                {{/each}}
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="isbn_paperback" class="control-label col-sm-2">  <h4><strong> ISBN Paperback</strong></h4></label>
+            <div class="col-sm-3">
+              <input type="text" id="isbn_paperback" name="isbn_paperback" value="" placeholder="ISBN (if you have one)" class="book-field input-lg input-lg-custom">
+            </div>
+            <label for="isbn_ebook" class="control-label col-sm-2">  <h4><strong>ISBN Ebook</strong></h4></label>
+            <div class="col-sm-3">
+              <input type="text" id="isbn_ebook" name="isbn_ebook" value="" placeholder="ISBN (if you have one)" class="book-field input-lg input-lg-custom">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="description" class="control-label col-sm-2">  <h4><strong> Description </strong></h4></label>
+        <div class="col-sm-8">
+          <textarea id="description" name="description" value="" placeholder="book description (for the ebook and book metadata)" class="book-field input-lg input-lg-custom" style="height:160px"></textarea>
+        </div>
+      </div>
+      <div class="alert alert-danger" style="visibility: hidden;" id="server_error">
+
+      </div>
+      <div class="form-group pull-right" style="padding-right:50px">
+        <button id="create_book" class="primary-button common-button-size" style="width:150px">Create</button>
+        <button id="cancel_book" class="primary-button common-button-size" style="width:150px">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="dropzone-partial">
+  <div id="preview-template" style="display: none;">
+    <div class="dz-preview dz-file-preview">
+      <div class="dz-details">
+        <div class="dz-filename"><span data-dz-name></span></div>
+        <div class="dz-size" data-dz-size></div>
+      </div>
+      <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+      <div class="dz-error-message"><span data-dz-errormessage></span></div>
+    </div>
+  </div>
+</div>

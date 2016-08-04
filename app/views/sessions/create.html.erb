@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <p> <label for="username" class=> <b> <%= @token %> </b></label>
+      <input id = "username" type="text" name="username" value="Username or EMail" class="login-field"></p>
+      <input id = "username" type="text" name="username" value="<%= @res %>" class="login-field"></p>
+    <p> <label for="password"> <b> Password </b></label>
+      <input id ="password" type="password" name="password" value="" placeholder="Password" class="login-field"></p>
+    <button id = "loginBtn" type="submit" class="primary-button input-lg">Log in </button>
+  </body>
+</html>
+
+<!-- <div>
+  <% if flash[:alert] %>
+  <p id = "notice"><%= flash[:alert] %> </p>
+  <% end %>
+  <%= form_tag do %>
+  <fieldset>
+    <legend>Please Log In</legend>
+    <div>
+      <%= label_tag :name, 'Name' %>
+      <%= text_field_tag :name, params[:name] %>
+      <%= label_tag :password, 'Password' %>
+      <%= password_field_tag :password, params[:password] %>
+    </div>
+    <div>
+      <%= submit_tag "Login" %>
+    </div>
+  </fieldset>
+  <% end %>
+</div> -->
