@@ -10,14 +10,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    response = RestClient.post(
-                  'http://localhost:5000/api/login',
-                  {
-                    username: 'priyank@redshift.com',
-                    password: '!abcd1234'
-                  }
-                )
-    @token = JSON.parse(response)["token"]
+    session_service = SessionsServices.new
+    @token = session_service.create
   end
 
   def destroy
